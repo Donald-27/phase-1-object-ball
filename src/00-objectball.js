@@ -93,8 +93,33 @@ function bigShoeRebounds() {
         }
     }
     return rebounds;
+    
+    //super bonus;finding player with longest name whereby the one with longest name had the most steals
 }
+function doesLongNameStealATon() {
+    let game = gameObject();
+    let longestName = "";
+    let mostSteals = 0;
+    let longestNameSteals = 0;
+    let mostStealsPlayer = "";
 
+    for (let team in game) {
+        for (let player in game[team].players) {
+            let playerStats = game[team].players[player];
+
+            // Findsplayer with the longest name
+            if (player.length > longestName.length) {
+                longestName = player;
+                longestNameSteals = playerStats.steals;
+            }
+
+            // Finds player with the most steals
+            if (playerStats.steals > mostSteals) {
+                mostSteals = playerStats.steals;
+                mostStealsPlayer = player;
+            }
+        }
+    }
 console.log(gameObject());
 console.log(numPointsScored("Alan Anderson"));
 console.log(shoeSize("Ben Gordon"));
@@ -102,4 +127,5 @@ console.log(teamColors("Brooklyn Nets"));
 console.log(teamNames());
 console.log(playerNumbers("Charlotte Hornets"));
 console.log(playerStats("Mason Plumlee"));
-console.log(bigShoeRebounds());
+console.log(bigShoeRebounds()); 
+}
